@@ -22,19 +22,19 @@ public class TestMove : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Z))
         {
-            transform.Translate(-0.1f, 0f, 0f);
+            transform.Translate(-0.05f, 0f, 0f);
         }
         if (Input.GetKey(KeyCode.S))
         {
-            transform.Translate(0.1f, 0f, 0f);
+            transform.Translate(0.05f, 0f, 0f);
         }
         if (Input.GetKey(KeyCode.D))
         {
-            transform.Translate(0.0f, 0f, 0.1f);
+            transform.Translate(0.0f, 0f, 0.05f);
         }
         if (Input.GetKey(KeyCode.Q))
         {
-            transform.Translate(0.0f, 0f, -0.1f);
+            transform.Translate(0.0f, 0f, -0.05f);
         }
     }
 
