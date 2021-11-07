@@ -9,12 +9,14 @@ public class GameManager : MonoBehaviour
     public RectTransform breakImage;
     public bool machineHit;
     public GameObject machine;
+    public bool unusedCredit;
+    public int credits;
 
 
     // Start is called before the first frame update
     void Start()
     {
-       
+
     }
 
     // Update is called once per frame
@@ -29,13 +31,23 @@ public class GameManager : MonoBehaviour
             {
                 if (hit.collider.tag == "WindowHitBox")
                 {
-                    Debug.Log("---> Hit: ");
                     Vector2 anchoredPos;
                     RectTransformUtility.ScreenPointToLocalPointInRectangle(windowParent, Input.mousePosition, sceneCamera, out anchoredPos);
                     breakImage.anchoredPosition = new Vector2(anchoredPos.x + 5, anchoredPos.y + 5);
                     machine.GetComponent<Animator>().SetTrigger("MachineHit");
                     SoundManager.smashSound();
                     SoundManager.voiceSound();
+                }
+
+                if (hit.collider.tag == "CoinHitBox" && machine.GetComponent<MachineScript>().onHit == false && machine.GetComponent<MachineScript>().onCoin == false && unusedCredit == false)
+                {
+                    if (credits > 0)
+                    {
+                        machine.GetComponent<Animator>().SetTrigger("MachineCoin");
+                        SoundManager.coinSound();
+                        credits--;
+                    }
+                    
                 }
             }
             

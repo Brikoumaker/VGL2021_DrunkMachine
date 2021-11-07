@@ -12,6 +12,10 @@ public class SoundManager : MonoBehaviour
     public static AudioClip[] sand;
     public static AudioClip[] smash;
     public static AudioClip stack;
+    public static AudioClip buzzer;
+    public static AudioClip win;
+    public static AudioClip winbig;
+    public static AudioClip combo;
     public static AudioClip[] success;
     public static AudioClip[] toy;
     public static AudioClip[] voice;
@@ -23,6 +27,10 @@ public class SoundManager : MonoBehaviour
         coin = Resources.Load<AudioClip>("coin");
         button = Resources.Load<AudioClip>("button");
         stack = Resources.Load<AudioClip>("stack");
+        buzzer = Resources.Load<AudioClip>("buzzer");
+        win = Resources.Load<AudioClip>("win");
+        winbig = Resources.Load<AudioClip>("winbig");
+        combo = Resources.Load<AudioClip>("combo");
         can = new AudioClip[6];
         can[1] = Resources.Load<AudioClip>("can1");
         can[2] = Resources.Load<AudioClip>("can2");
@@ -80,6 +88,26 @@ public class SoundManager : MonoBehaviour
     public static void buttonSound()
     {
         audioSrc.PlayOneShot(button);
+    }
+
+    public static void buzzerSound()
+    {
+        audioSrc.PlayOneShot(buzzer);
+    }
+
+    public static void winSound()
+    {
+        audioSrc.PlayOneShot(win);
+    }
+
+    public static void winbigSound()
+    {
+        audioSrc.PlayOneShot(winbig);
+    }
+
+    public static void comboSound()
+    {
+        audioSrc.PlayOneShot(combo);
     }
 
     public static void canSound()

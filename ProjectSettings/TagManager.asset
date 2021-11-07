@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - WindowHitBox
+  - CoinHitBox
   layers:
   - Default
   - TransparentFX

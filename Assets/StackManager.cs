@@ -13,6 +13,7 @@ public class StackManager : MonoBehaviour
     int index = 0;
     public string key;
     public bool translation;
+    public GameObject gameManager;
 
     // Start is called before the first frame update
     void Start()
@@ -38,8 +39,17 @@ public class StackManager : MonoBehaviour
         {
             if (translation == false)
             {
-                translation = true;
-                SoundManager.stackSound();
+                if (gameManager.GetComponent<GameManager>().unusedCredit == true)
+                {
+                    translation = true;
+                    SoundManager.stackSound();
+                    gameManager.GetComponent<GameManager>().unusedCredit = false;
+                }
+                else
+                {
+                    SoundManager.buzzerSound();
+                }
+                
             }
             
 
