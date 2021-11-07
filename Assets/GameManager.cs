@@ -13,10 +13,12 @@ public class GameManager : MonoBehaviour
     public bool unusedCredit;
     public int credits;
     public int points;
+    public int combo;
     public Text coinsValue;
     public Text pointsValue;
     public Text comboText;
     public Text lineText;
+    public bool infinite;
 
 
     // Start is called before the first frame update
@@ -29,8 +31,16 @@ public class GameManager : MonoBehaviour
     void Update()
 
     {
-        coinsValue.text = credits.ToString() + (" $");
+        if (infinite == true)
+        {
+            coinsValue.text = ("INFINI $");
+        } else
+        {
+            coinsValue.text = credits.ToString() + (" $");
+        }
+        
         pointsValue.text = points.ToString() + (" Pts");
+        comboText.text = ("COMBO x") + combo.ToString();
 
         if (Input.GetMouseButtonDown(0))
         {

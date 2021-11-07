@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6993888902146586503}
   m_Layer: 0
   m_Name: PrefabToy
-  m_TagString: Untagged
+  m_TagString: Ato
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47,20 +47,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   physicable: {fileID: 7912298116953822696}
   falling: 0
---- !u!136 &6993888902197766334
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7912298116953822696}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 1.3
-  m_Height: 7.2
-  m_Direction: 1
-  m_Center: {x: 0, y: 2.32, z: -0.16}
 --- !u!54 &6993888902197766333
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -77,6 +63,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!136 &6993888902197766334
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7912298116953822696}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1.3
+  m_Height: 7.2
+  m_Direction: 1
+  m_Center: {x: 0, y: 2.32, z: -0.16}
 --- !u!114 &7302883712731380261
 MonoBehaviour:
   m_ObjectHideFlags: 0

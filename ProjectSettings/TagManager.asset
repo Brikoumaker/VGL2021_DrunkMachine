@@ -6,6 +6,7 @@ TagManager:
   tags:
   - WindowHitBox
   - CoinHitBox
+  - Ato
   layers:
   - Default
   - TransparentFX

@@ -69,7 +69,7 @@ public class StackManager : MonoBehaviour
                 prefabs[index].GetComponent<PropManager>().EnableRigidBody();
                 prefabs[index].transform.parent = null;
                 index += 1;
-                int random = Random.Range(0, 45);
+                int random = Random.Range(0, 30);
                 if (random == 0)
                 {
                     prefabs[index + 3] = Instantiate(alternativePrefab, new Vector3(0, 0, -6) + stackPos, Quaternion.identity) as GameObject;
