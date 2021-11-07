@@ -21,9 +21,13 @@ public class StackManager : MonoBehaviour
         maxPrefabPosZ = 9 + stackPos.z;
         prefabs = new GameObject[50];
         prefabs[0] = Instantiate(prefab, new Vector3(0, 0, 6) + stackPos, Quaternion.identity);
+        prefabs[0].transform.parent = transform;
         prefabs[1] = Instantiate(prefab, new Vector3(0, 0, 2) + stackPos, Quaternion.identity);
+        prefabs[1].transform.parent = transform;
         prefabs[2] = Instantiate(prefab, new Vector3(0, 0, -2) + stackPos, Quaternion.identity);
+        prefabs[2].transform.parent = transform;
         prefabs[3] = Instantiate(prefab, new Vector3(0, 0, -6) + stackPos, Quaternion.identity);
+        prefabs[3].transform.parent = transform;
         translation = false;
     }
 
@@ -53,6 +57,7 @@ public class StackManager : MonoBehaviour
             } else
             {
                 prefabs[index].GetComponent<PropManager>().EnableRigidBody();
+                prefabs[index].transform.parent = null;
                 index += 1;
                 int random = Random.Range(0, 45);
                 if (random == 0)
@@ -62,7 +67,8 @@ public class StackManager : MonoBehaviour
                 {
                     prefabs[index + 3] = Instantiate(prefab, new Vector3(0, 0, -6) + stackPos, Quaternion.identity) as GameObject;
                 }
-                
+                prefabs[index + 3].transform.parent = transform;
+
                 translation = false;
             }
         }
