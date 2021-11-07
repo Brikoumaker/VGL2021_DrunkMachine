@@ -16,6 +16,7 @@ public class SoundManager : MonoBehaviour
     public static AudioClip win;
     public static AudioClip winbig;
     public static AudioClip combo;
+    public static AudioClip alarm;
     public static AudioClip[] success;
     public static AudioClip[] toy;
     public static AudioClip[] voice;
@@ -31,6 +32,7 @@ public class SoundManager : MonoBehaviour
         win = Resources.Load<AudioClip>("win");
         winbig = Resources.Load<AudioClip>("winbig");
         combo = Resources.Load<AudioClip>("combo");
+        alarm = Resources.Load<AudioClip>("alarm");
         can = new AudioClip[6];
         can[1] = Resources.Load<AudioClip>("can1");
         can[2] = Resources.Load<AudioClip>("can2");
@@ -119,6 +121,11 @@ public class SoundManager : MonoBehaviour
     public static void stackSound()
     {
         audioSrc.PlayOneShot(stack);
+    }
+
+    public static void alarmSound()
+    {
+        audioSrc.PlayOneShot(alarm);
     }
 
     public static void bottleSound()

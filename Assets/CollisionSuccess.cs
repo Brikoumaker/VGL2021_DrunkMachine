@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CollisionSuccess : MonoBehaviour
 {
+    public GameObject gameManager;
+    public GameObject pointsText;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,5 +21,8 @@ public class CollisionSuccess : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         Destroy(collision.gameObject.transform.parent.gameObject);
+        SoundManager.successSound();
+        gameManager.GetComponent<GameManager>().points += 10;
+        pointsText.GetComponent<Animator>().SetTrigger("Shake");
     }
 }

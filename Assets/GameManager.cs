@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,6 +12,11 @@ public class GameManager : MonoBehaviour
     public GameObject machine;
     public bool unusedCredit;
     public int credits;
+    public int points;
+    public Text coinsValue;
+    public Text pointsValue;
+    public Text comboText;
+    public Text lineText;
 
 
     // Start is called before the first frame update
@@ -21,8 +27,12 @@ public class GameManager : MonoBehaviour
 
     // Update is called once per frame
     void Update()
+
     {
-        if(Input.GetMouseButtonDown(0))
+        coinsValue.text = credits.ToString() + (" $");
+        pointsValue.text = points.ToString() + (" Pts");
+
+        if (Input.GetMouseButtonDown(0))
         {
             var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
