@@ -5,6 +5,7 @@ using UnityEngine;
 public class StackManager : MonoBehaviour
 {
     public GameObject prefab;
+    public GameObject alternativePrefab;
     Vector3 stackPos;
     float firstPrefabPosZ;
     float maxPrefabPosZ;
@@ -18,7 +19,7 @@ public class StackManager : MonoBehaviour
     {
         stackPos = transform.position;
         maxPrefabPosZ = 9 + stackPos.z;
-        prefabs = new GameObject[100];
+        prefabs = new GameObject[50];
         prefabs[0] = Instantiate(prefab, new Vector3(0, 0, 6) + stackPos, Quaternion.identity);
         prefabs[1] = Instantiate(prefab, new Vector3(0, 0, 2) + stackPos, Quaternion.identity);
         prefabs[2] = Instantiate(prefab, new Vector3(0, 0, -2) + stackPos, Quaternion.identity);
@@ -31,7 +32,12 @@ public class StackManager : MonoBehaviour
     {
         if (Input.GetKeyDown(key))
         {
-            translation = true;
+            if (translation == false)
+            {
+                translation = true;
+                SoundManager.stackSound();
+            }
+            
 
         }
 
@@ -48,8 +54,15 @@ public class StackManager : MonoBehaviour
             {
                 prefabs[index].GetComponent<PropManager>().EnableRigidBody();
                 index += 1;
-                //prefabs = new GameObject[prefabs.Length + 1];
-                prefabs[index + 3] = Instantiate(prefab, new Vector3(0, 0, -6) + stackPos, Quaternion.identity) as GameObject;
+                int random = Random.Range(0, 45);
+                if (random == 0)
+                {
+                    prefabs[index + 3] = Instantiate(alternativePrefab, new Vector3(0, 0, -6) + stackPos, Quaternion.identity) as GameObject;
+                } else
+                {
+                    prefabs[index + 3] = Instantiate(prefab, new Vector3(0, 0, -6) + stackPos, Quaternion.identity) as GameObject;
+                }
+                
                 translation = false;
             }
         }

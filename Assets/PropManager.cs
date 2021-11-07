@@ -27,4 +27,6 @@ public class PropManager : MonoBehaviour
         rigidBody.isKinematic = false;
         falling = true;
     }
+
+    
 }

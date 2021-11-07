@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: OutlineCan
+  m_Name: OutlineCan 1
   m_Shader: {fileID: 4800000, guid: bd0dc93848fbf954f9c2066291598d47, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -20,7 +20,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: a16b62b44058101419ecd7a5311c6a70, type: 3}
+        m_Texture: {fileID: 2800000, guid: 91a20e19924eceb439f989c94deb2701, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
