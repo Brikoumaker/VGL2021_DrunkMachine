@@ -68,6 +68,7 @@ public class CollisionSuccess : MonoBehaviour
                 if (combo > 6)
                 {
                     gameManager.GetComponent<GameManager>().points += 5000;
+                    gameManager.GetComponent<GameManager>().points += 500*combo;
                     SoundManager.winbigSound();
                     lineText.text = ("Diabète /20 !");
                     Line.GetComponent<Animator>().SetTrigger("Line7");

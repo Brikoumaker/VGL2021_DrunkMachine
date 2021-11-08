@@ -10,6 +10,9 @@ public class GameManager : MonoBehaviour
     public RectTransform breakImage;
     public bool machineHit;
     public GameObject machine;
+    public GameObject alert;
+    public GameObject dollar;
+    public GameObject timer;
     public bool unusedCredit;
     public int credits;
     public int points;
@@ -18,7 +21,11 @@ public class GameManager : MonoBehaviour
     public Text pointsValue;
     public Text comboText;
     public Text lineText;
+    public Text timerText;
     public bool infinite;
+    public float time = 0.0f;
+    public float endTime = 0.0f;
+    public bool gameFinished;
 
 
     // Start is called before the first frame update
@@ -31,18 +38,36 @@ public class GameManager : MonoBehaviour
     void Update()
 
     {
-        if (infinite == true)
+        if (infinite == true && gameFinished == false)
         {
             coinsValue.text = ("INFINI $");
+            time -= Time.deltaTime;
+            timerText.text = ((int)time).ToString();
+            if (time < 0.001f)
+            {
+                endTime = 6.0f;
+                gameFinished = true;
+            }
+
         } else
         {
             coinsValue.text = credits.ToString() + (" $");
+        }
+
+        if (credits == 0 && infinite == false)
+        {
+            infinite = true;
+            alert.GetComponent<Animator>().SetTrigger("Alert");
+            SoundManager.alarmSound();
+            dollar.SetActive(false);
+            timer.SetActive(true);
+            time = 16.0f;
         }
         
         pointsValue.text = points.ToString() + (" Pts");
         comboText.text = ("COMBO x") + combo.ToString();
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && gameFinished == false)
         {
             var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
@@ -59,7 +84,7 @@ public class GameManager : MonoBehaviour
                     SoundManager.voiceSound();
                 }
 
-                if (hit.collider.tag == "CoinHitBox" && machine.GetComponent<MachineScript>().onHit == false && machine.GetComponent<MachineScript>().onCoin == false && unusedCredit == false)
+                if (hit.collider.tag == "CoinHitBox" && machine.GetComponent<MachineScript>().onHit == false && machine.GetComponent<MachineScript>().onCoin == false && unusedCredit == false && infinite == false)
                 {
                     if (credits > 0)
                     {
@@ -73,4 +98,10 @@ public class GameManager : MonoBehaviour
             
         }
     }
+
+    public void ShowDollar()
+    {
+        dollar.GetComponent<Animator>().SetTrigger("Show");
+    }
+
 }

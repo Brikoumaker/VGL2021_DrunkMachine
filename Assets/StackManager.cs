@@ -35,11 +35,11 @@ public class StackManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(key))
+        if (Input.GetKeyDown(key) && gameManager.GetComponent<GameManager>().gameFinished == false)
         {
             if (translation == false)
             {
-                if (gameManager.GetComponent<GameManager>().unusedCredit == true)
+                if (gameManager.GetComponent<GameManager>().unusedCredit == true || gameManager.GetComponent<GameManager>().infinite == true)
                 {
                     translation = true;
                     SoundManager.stackSound();
@@ -48,6 +48,7 @@ public class StackManager : MonoBehaviour
                 else
                 {
                     SoundManager.buzzerSound();
+                    gameManager.GetComponent<GameManager>().ShowDollar();
                 }
                 
             }
@@ -69,7 +70,7 @@ public class StackManager : MonoBehaviour
                 prefabs[index].GetComponent<PropManager>().EnableRigidBody();
                 prefabs[index].transform.parent = null;
                 index += 1;
-                int random = Random.Range(0, 30);
+                int random = Random.Range(0, 20);
                 if (random == 0)
                 {
                     prefabs[index + 3] = Instantiate(alternativePrefab, new Vector3(0, 0, -6) + stackPos, Quaternion.identity) as GameObject;
