@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StackManager : MonoBehaviour
 {
@@ -14,6 +15,10 @@ public class StackManager : MonoBehaviour
     public string key;
     public bool translation;
     public GameObject gameManager;
+    public Text keyChara;
+    public bool animationRunning;
+    int callShowKeyBuffer = 0;
+    public Animator Stack;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +35,7 @@ public class StackManager : MonoBehaviour
         prefabs[3] = Instantiate(prefab, new Vector3(0, 0, -6) + stackPos, Quaternion.identity);
         prefabs[3].transform.parent = transform;
         translation = false;
+        keyChara.text = key;
     }
 
     // Update is called once per frame
@@ -81,6 +87,15 @@ public class StackManager : MonoBehaviour
                 prefabs[index + 3].transform.parent = transform;
 
                 translation = false;
+            }
+        }
+
+        if (callShowKeyBuffer != gameManager.GetComponent<GameManager>().callShowKey)
+        {
+            callShowKeyBuffer = gameManager.GetComponent<GameManager>().callShowKey;
+            if (animationRunning == false)
+            {
+                Stack.SetTrigger("showKey");
             }
         }
 

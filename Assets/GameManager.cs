@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     public float time = 0.0f;
     public float endTime = 6.0f;
     public bool gameFinished;
+    public int callShowKey = 0;
 
 
 
@@ -100,15 +101,21 @@ public class GameManager : MonoBehaviour
                     SoundManager.voiceSound();
                 }
 
-                if (hit.collider.tag == "CoinHitBox" && machine.GetComponent<MachineScript>().onHit == false && machine.GetComponent<MachineScript>().onCoin == false && unusedCredit == false && infinite == false)
+                if (hit.collider.tag == "CoinHitBox")
                 {
-                    if (credits > 0)
-                    {
-                        machine.GetComponent<Animator>().SetTrigger("MachineCoin");
-                        SoundManager.coinSound();
-                        credits--;
-                    }
+
+                    InsertCoin();
                     
+                    
+                }
+
+                if (hit.collider.tag == "ButtonsHitBox")
+                {
+
+                    callShowKey += 1;
+                    SoundManager.buttonSound();
+
+
                 }
             }
             
@@ -123,6 +130,28 @@ public class GameManager : MonoBehaviour
     public void Restart()
     {
         SceneManager.LoadScene("Machine");
+    }
+
+    public void InsertCoin()
+    {
+
+        if (machine.GetComponent<MachineScript>().onHit == false && machine.GetComponent<MachineScript>().onCoin == false)
+        {
+            if (unusedCredit == false && infinite == false)
+            {
+                if (credits > 0)
+                {
+                    machine.GetComponent<Animator>().SetTrigger("MachineCoin");
+                    SoundManager.coinSound();
+                    credits--;
+                }
+            } else
+            {
+                callShowKey += 1;
+                SoundManager.buttonSound();
+            }
+        }
+        
     }
 
 }
