@@ -50,6 +50,10 @@ public class StackManager : MonoBehaviour
                     translation = true;
                     SoundManager.stackSound();
                     gameManager.GetComponent<GameManager>().unusedCredit = false;
+                    if (gameManager.GetComponent<GameManager>().credits == 0)
+                    {
+                        gameManager.GetComponent<GameManager>().lastCoin = true;
+                    }
                 }
                 else
                 {

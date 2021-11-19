@@ -27,16 +27,17 @@ public class GameManager : MonoBehaviour
     public Text finalScore;
     public bool infinite;
     public float time = 0.0f;
-    public float endTime = 6.0f;
+    public float endTime = 14.0f;
     public bool gameFinished;
     public int callShowKey = 0;
+    public bool lastCoin;
 
 
 
     // Start is called before the first frame update
     void Start()
     {
-        endTime = 7.0f;
+        endTime = 14.0f;
         Time.timeScale = 2.0f;
     }
 
@@ -54,17 +55,18 @@ public class GameManager : MonoBehaviour
         if (endTime < 0.001f && gameFinished == true)
         {
             endScreen.SetActive(true);
+            finalScore.text = points.ToString() + (" Pts");
         }
 
         if (infinite == true && gameFinished == false)
         {
             coinsValue.text = ("INFINI $");
             time -= Time.deltaTime;
-            timerText.text = ((int)time).ToString();
+            timerText.text = ((int)(time/2)).ToString();
             if (time < 0.001f)
             {
                 gameFinished = true;
-                finalScore.text = points.ToString() + (" Pts");
+                
             }
 
         } else
@@ -72,14 +74,14 @@ public class GameManager : MonoBehaviour
             coinsValue.text = credits.ToString() + (" $");
         }
 
-        if (credits == 0 && infinite == false)
+        if (lastCoin == true && infinite == false)
         {
             infinite = true;
             alert.GetComponent<Animator>().SetTrigger("Alert");
             SoundManager.alarmSound();
             dollar.SetActive(false);
             timer.SetActive(true);
-            time = 16.0f;
+            time = 32.0f;
         }
         
         pointsValue.text = points.ToString() + (" Pts");
