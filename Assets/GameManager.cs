@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
     public bool gameFinished;
     public int callShowKey = 0;
     public bool lastCoin;
+    public int timesound = 4;
 
 
 
@@ -63,6 +64,35 @@ public class GameManager : MonoBehaviour
             coinsValue.text = ("INFINI $");
             time -= Time.deltaTime;
             timerText.text = ((int)(time/2)).ToString();
+
+            if(time < 8.0f && timesound == 4)
+            {
+                SoundManager.clockSound();
+                timesound = 3;
+
+            }
+
+            if (time < 6.0f && timesound == 3)
+            {
+                SoundManager.clockSound();
+                timesound = 2;
+
+            }
+
+            if (time < 4.0f && timesound == 2)
+            {
+                SoundManager.clockSound();
+                timesound = 1;
+
+            }
+
+            if (time < 2.0f && timesound == 1)
+            {
+                SoundManager.whistleSound();
+                timesound = 0;
+
+            }
+
             if (time < 0.001f)
             {
                 gameFinished = true;

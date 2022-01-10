@@ -17,6 +17,10 @@ public class SoundManager : MonoBehaviour
     public static AudioClip winbig;
     public static AudioClip combo;
     public static AudioClip alarm;
+    public static AudioClip clock;
+    public static AudioClip victory;
+    public static AudioClip whistle;
+    public static AudioClip finalscore;
     public static AudioClip[] success;
     public static AudioClip[] toy;
     public static AudioClip[] voice;
@@ -33,6 +37,10 @@ public class SoundManager : MonoBehaviour
         winbig = Resources.Load<AudioClip>("winbig");
         combo = Resources.Load<AudioClip>("combo");
         alarm = Resources.Load<AudioClip>("alarm");
+        clock = Resources.Load<AudioClip>("clock");
+        whistle = Resources.Load<AudioClip>("whistle");
+        finalscore = Resources.Load<AudioClip>("finalscore");
+        victory = Resources.Load<AudioClip>("victory");
         can = new AudioClip[6];
         can[1] = Resources.Load<AudioClip>("can1");
         can[2] = Resources.Load<AudioClip>("can2");
@@ -110,6 +118,26 @@ public class SoundManager : MonoBehaviour
     public static void comboSound()
     {
         audioSrc.PlayOneShot(combo);
+    }
+
+    public static void clockSound()
+    {
+        audioSrc.PlayOneShot(clock);
+    }
+
+    public static void whistleSound()
+    {
+        audioSrc.PlayOneShot(whistle);
+    }
+
+    public static void finalscoreSound()
+    {
+        audioSrc.PlayOneShot(finalscore);
+    }
+
+    public static void victorySound()
+    {
+        audioSrc.PlayOneShot(victory);
     }
 
     public static void canSound()
