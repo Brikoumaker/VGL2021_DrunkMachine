@@ -32,6 +32,10 @@ public class GameManager : MonoBehaviour
     public int callShowKey = 0;
     public bool lastCoin;
     public int timesound = 4;
+    public float scoreAnimation;
+    public bool animationActive = false;
+    public float animationTime = 0.0f;
+    public bool finalFinal;
 
 
 
@@ -53,10 +57,28 @@ public class GameManager : MonoBehaviour
             
         }
 
-        if (endTime < 0.001f && gameFinished == true)
+        if (endTime < 0.001f && gameFinished == true && animationActive == false)
         {
             endScreen.SetActive(true);
-            finalScore.text = points.ToString() + (" Pts");
+            animationActive = true;
+            SoundManager.finalscoreSound();
+            
+        }
+
+        if (animationActive == true && finalFinal == false)
+        {
+            animationTime += Time.deltaTime;
+            scoreAnimation = points * (animationTime /6.0f);
+            finalScore.text = Mathf.Round(scoreAnimation).ToString() + (" Pts");
+
+            if (scoreAnimation >= points)
+            {
+                finalFinal = true;
+                finalScore.text = points.ToString() + (" Pts");
+                SoundManager.victorySound();
+            }
+
+
         }
 
         if (infinite == true && gameFinished == false)

@@ -487,6 +487,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2130265341}
     m_Modifications:
+    - target: {fileID: 7460263173478104667, guid: 4c922dcc81697794fb64b242c5880a36, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7460263173478104667, guid: 4c922dcc81697794fb64b242c5880a36, type: 3}
+      propertyPath: m_SortingOrder
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 7735442257052752184, guid: 4c922dcc81697794fb64b242c5880a36, type: 3}
       propertyPath: m_Name
       value: Stack_A1
@@ -1439,6 +1447,12 @@ MonoBehaviour:
   endTime: 0
   gameFinished: 0
   callShowKey: 0
+  lastCoin: 0
+  timesound: 4
+  scoreAnimation: 0
+  animationActive: 0
+  animationTime: 0
+  finalFinal: 0
 --- !u!4 &677466778
 Transform:
   m_ObjectHideFlags: 0
@@ -1955,7 +1969,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 2147483647
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
