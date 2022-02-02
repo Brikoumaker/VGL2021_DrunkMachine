@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     public GameObject dollar;
     public GameObject timer;
     public GameObject endScreen;
+    public GameObject panel;
     public bool unusedCredit;
     public int credits;
     public int points;
@@ -36,6 +37,7 @@ public class GameManager : MonoBehaviour
     public bool animationActive = false;
     public float animationTime = 0.0f;
     public bool finalFinal;
+    public bool gameActive = true;
 
 
 
@@ -133,13 +135,13 @@ public class GameManager : MonoBehaviour
             SoundManager.alarmSound();
             dollar.SetActive(false);
             timer.SetActive(true);
-            time = 32.0f;
+            time = 22.0f;
         }
         
         pointsValue.text = points.ToString() + (" Pts");
         comboText.text = ("COMBO x") + combo.ToString();
 
-        if (Input.GetMouseButtonDown(0) && gameFinished == false)
+        if (Input.GetMouseButtonDown(0) && gameFinished == false && gameActive == true)
         {
             var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
@@ -151,6 +153,7 @@ public class GameManager : MonoBehaviour
                     Vector2 anchoredPos;
                     RectTransformUtility.ScreenPointToLocalPointInRectangle(windowParent, Input.mousePosition, sceneCamera, out anchoredPos);
                     breakImage.anchoredPosition = new Vector2(anchoredPos.x + 5, anchoredPos.y + 5);
+                    breakImage.transform.eulerAngles = new Vector3(0, 0, Random.Range(0, 360));
                     machine.GetComponent<Animator>().SetTrigger("MachineHit");
                     SoundManager.smashSound();
                     SoundManager.voiceSound();
@@ -190,7 +193,7 @@ public class GameManager : MonoBehaviour
     public void InsertCoin()
     {
 
-        if (machine.GetComponent<MachineScript>().onHit == false && machine.GetComponent<MachineScript>().onCoin == false)
+        if (machine.GetComponent<MachineScript>().onHit == false && machine.GetComponent<MachineScript>().onCoin == false && gameActive == true)
         {
             if (unusedCredit == false && infinite == false)
             {
@@ -207,6 +210,27 @@ public class GameManager : MonoBehaviour
             }
         }
         
+    }
+
+    public void ShowInstructions()
+    {
+        if (panel.GetComponent<Animator>().GetBool("InfoButtonActive") == true)
+        {
+            panel.GetComponent<Animator>().SetBool("InfoButtonActive", false);
+            gameActive = true;
+        }
+        else
+        {
+            panel.GetComponent<Animator>().SetBool("InfoButtonActive", true);
+            gameActive = false;
+        }
+        
+    }
+
+    public void HideInstructions()
+    {
+        panel.GetComponent<Animator>().SetBool("InfoButtonActive", false);
+        gameActive = true;
     }
 
 }
